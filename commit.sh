@@ -1,12 +1,20 @@
 #!/bin/bash
 
-if [ $# -ne 2 ]; then
+if [ $# -lt 2 ]; then
     echo "Usage: $0 <task_id> <commit_message>"
     exit 1
 fi
 
 CURR_TASK_ID=$1
 EXTRA_COMMIT_MESSAGE=$2
+IS_PUSH=false
+
+while getopts "p" opt; do
+    if [ "$opt" == "p" ]; then
+        IS_PUSH=true
+        break
+    fi
+done
 
 EXEL_PATH="tasks.csv"
 
@@ -15,11 +23,8 @@ if [ ! -f $EXEL_PATH ]; then
     exit 1
 fi
 
-
-
-while IFS=',', read -r TaskID Desc branch Developer GITHUB_URL;
-do
-    if [[ "$TaskID" =~ ^[0-9]+$ ]]; then # check if TaskID is a number
+while IFS=',', read -r TaskID Desc branch Developer GITHUB_URL; do
+    if [[ "$TaskID" =~ ^[0-9]+$ ]]; then           # check if TaskID is a number
         if [ "$TaskID" -eq "$CURR_TASK_ID" ]; then # check if TaskID is equal to the given TaskID
 
             commit_message="$TaskID - $(date '+%Y-%m-%d %H:%M:%S') - $branch - $Developer - $Desc - $EXTRA_COMMIT_MESSAGE"
@@ -27,10 +32,14 @@ do
             git add .
             git commit -m "$commit_message"
             echo "Commit message: $commit_message"
-            
+
+            if [ "$IS_PUSH" = true ]; then
+                git push origin $branch
+                echo "Pushed to $branch"
+            fi
+
             break
         fi
     fi
 
-done < $EXEL_PATH
-
+done <$EXEL_PATH
