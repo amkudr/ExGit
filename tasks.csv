@@ -1,0 +1,6 @@
+﻿TaskID,Desc,branch,Developer,GITHUB_URL
+1,Create SMT 1,BR_TASK1,DEVEL_1,https://github.com/amkudr/ExGit/tree/main/BR_TASK1
+2,Create SMT 2,BR_TASK2,DEVEL_2,https://github.com/amkudr/ExGit/tree/main/BR_TASK2
+3,Create SMT 3,BR_TASK3,DEVEL_3,https://github.com/amkudr/ExGit/tree/main/BR_TASK3
+4,Create SMT 4,BR_TASK4,DEVEL_4,https://github.com/amkudr/ExGit/tree/main/BR_TASK4
+5,Create SMT 5,BR_TASK5,DEVEL_5,https://github.com/amkudr/ExGit/tree/main/BR_TASK5
