@@ -9,12 +9,9 @@ CURR_TASK_ID=$1
 EXTRA_COMMIT_MESSAGE=$2
 IS_PUSH=false
 
-while getopts "p" opt; do
-    if [ "$opt" == "p" ]; then
-        IS_PUSH=true
-        break
-    fi
-done
+if [[ " $* " == *" -p "* ]]; then
+    IS_PUSH=true
+fi
 
 EXEL_PATH="tasks.csv"
 
