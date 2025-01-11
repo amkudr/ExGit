@@ -22,7 +22,7 @@ do
     if [[ "$TaskID" =~ ^[0-9]+$ ]]; then # check if TaskID is a number
         if [ "$TaskID" -eq "$CURR_TASK_ID" ]; then # check if TaskID is equal to the given TaskID
 
-            commit_message="$TaskID - ${date} - $branch - $Developer - $Desc - $EXTRA_COMMIT_MESSAGE"
+            commit_message="$TaskID - $(date '+%Y-%m-%d %H:%M:%S') - $branch - $Developer - $Desc - $EXTRA_COMMIT_MESSAGE"
 
             git add .
             git commit -m "$commit_message"
